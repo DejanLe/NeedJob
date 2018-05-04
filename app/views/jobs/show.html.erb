@@ -1,0 +1,47 @@
+<div class="alljob  ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+  <strong>Title:</strong>
+  <%= @job.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @job.description %>
+</p>
+  <td><%= @job.created_at.strftime('%b %d, %Y')  %></td>
+<p>
+
+
+  <% if @job.urgent and @job.urgent %>
+     <div class="background-color-red badge badge-danger">
+
+         <%= form_with(model: @job, local: true) do |form| %>
+         <div class="field">
+           <%= form.label :urgent %>
+         </div>
+         <% end %>
+        </div>
+        <% elsif @job.urgent  %>
+        <div class="background-color-blue">
+         <span class="badge "><%= @job.urgent   %></span>
+        </div>
+    <% end %>
+</p>
+<p>
+  <strong>Job type:</strong>
+
+</p>
+  <%= @job.jobcity  %>
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Destroy', @job, method: :delete, data: { confirm: 'Are you sure?' } %> |
+
+<%= link_to 'Back', jobs_path %>
+
+
+
+</div>
+</div>
+</div>

@@ -1,0 +1,26 @@
+// Place all the styles related to the Jobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+body{
+  background-color: #f3f4f9 !important;
+  font-family: 'Nunito', sans-serif !important;
+}
+a{
+  transition: all 0.5s !important;
+}
+.companylogo img{
+  width: 3rem !important;
+  border-radius: 50%;
+}
+.card a{
+  color: orange !important;
+}
+.card a:hover{
+  text-decoration: none;
+  color: #888 !important;
+  transition: all 0.5s !important;
+}
+.navbar-brand{
+    font-family: 'Titan One', cursive !important;
+    font-size: 3rem;
+}

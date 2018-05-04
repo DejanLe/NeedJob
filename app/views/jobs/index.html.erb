@@ -1,0 +1,62 @@
+<div class="alljob  ">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <h3 class="">Recent Jobs</h3>
+      
+      <p>Total job: <%= @jobs.count %>  </p>
+      <%= link_to "All jobs", @jobtypes,   class: "btn btn-outline-primary "  %>
+
+      <% Jobtype.all.each do |jobtype| %>
+        <%= link_to jobtype.name, jobs_path(jobtype: jobtype.name), class: "btn btn-outline-primary "  %>
+      <% end %>
+      <div class="card">
+
+        <table class="table">
+          <thead >
+
+          </thead>
+
+          <tbody>
+          <% @jobs.each do |job| %>
+              <tr>
+                <td><%= job.created_at.strftime('%b %d, %Y')  %></td>
+                <td><% if job.urgent and job.urgent %>
+                 <div class="background-color-red badge badge-danger">
+                        <!--   <span class="badge "><%= job.urgent %></span> -->
+                       <%= form_with(model: job, local: true) do |form| %>
+                       <div class="field">
+                         <%= form.label :urgent %>
+                       </div>
+                       <% end %>
+                      </div>
+                      <% elsif job.urgent and !job.urgent %>
+                      <div class="background-color-blue">
+                       <span class="badge "><%= job.urgent   %></span>
+                      </div>
+                  <% end %>
+                </td>
+                  <td class="companylogo"> <%= image_tag(job.companylogo_url) if job.companylogo? %>  <%= link_to job.title , job  %></td>
+                  <td>   <%= job.description %></td>
+                  <td>   <%= job.jobcity %></td>
+
+
+              </tr>
+
+            <% end %>
+
+
+          </tbody>
+        </table>
+
+
+              </div>
+
+
+      </div>
+
+
+</div>
+</div>
+</div>
