@@ -1,15 +1,15 @@
-<div class="alljob  ">
+<div class="alljob">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
 
         <h3 class="">Recent Jobs</h3>
-      
+
       <p>Total job: <%= @jobs.count %>  </p>
-      <%= link_to "All jobs", @jobtypes,   class: "btn btn-outline-primary "  %>
+      <%= link_to "All jobs", @jobtypes,   class: "badge badge-primary  "  %>
 
       <% Jobtype.all.each do |jobtype| %>
-        <%= link_to jobtype.name, jobs_path(jobtype: jobtype.name), class: "btn btn-outline-primary "  %>
+        <%= link_to jobtype.name, jobs_path(jobtype: jobtype.name), class: "badge badge-primary   "  %>
       <% end %>
       <div class="card">
 
@@ -37,8 +37,14 @@
                       </div>
                   <% end %>
                 </td>
-                  <td class="companylogo"> <%= image_tag(job.companylogo_url) if job.companylogo? %>  <%= link_to job.title , job  %></td>
-                  <td>   <%= job.description %></td>
+                  <td class="companylogo"> <%= image_tag(job.companylogo_url) if job.companylogo? %>
+                    <% if user_signed_in? %>
+                      <%= link_to job.title , job  %>
+                    </td>
+                    <% else %>
+                    <%= link_to job.title   , new_user_session_path, class: "navbar-link" %>
+                    <% end %>
+                  <td>   <%= truncate(job.description, length: 100) %></td>
                   <td>   <%= job.jobcity %></td>
 
 
